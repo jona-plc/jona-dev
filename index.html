@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>JPL | Developer Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+ 
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html, body{
+  height:100%;
+  font-family:"Roboto Mono", monospace;
+  background:#f5f5f5;
+  overflow:hidden;
+}
+
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+ 
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url("assets/image.png") center/cover no-repeat;
+  opacity:0.6;  
+  z-index:0;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to right,
+    rgba(0,0,0,0.55) 0%,    
+    rgba(0,0,0,0.55) 40%,   
+    rgba(0,0,0,0.2) 70%,    
+    rgba(0,0,0,0.05) 100%   
+  );
+  z-index:1;
+}
+ 
+.menu{
+  position:fixed;
+  top:20px;
+  left:20px;
+  width:55px;
+  height:55px;
+  background:#fff;
+  border:1px solid #ddd;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:2000;
+  font-size:20px;
+  color:#444;
+}
+ 
+.dots {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+  display: grid;
+  grid-template-columns: repeat(6, 6px);
+  gap: 10px;
+}
+
+.dots span{
+  width:6px;
+  height:6px;
+  background:#fff;
+  border-radius:50%;
+  display:block;
+  opacity:0.9;
+}
+ 
+.sidebar{
+  position:fixed;
+  top:0;
+  left:-260px;
+  width:260px;
+  height:100%;
+  background:#fff;
+  border-right:1px solid #eee;
+  padding-top:80px;
+  transition:.4s ease;
+  z-index:3000;
+}
+
+.sidebar a{
+  display:block;
+  padding:16px 24px;
+  text-decoration:none;
+  color:#444;
+  font-size:14px;
+}
+
+.sidebar a:hover{
+  background:#f3f3f3;
+}
+
+.sidebar.active{
+  left:0;
+}
+
+.close-btn{
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:22px;
+  cursor:pointer;
+  color:#444;
+}
+ 
+.content{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  color:#fff;
+  max-width:900px;
+  padding:0 20px;
+  
+  
+}
+
+h1, .name{
+  font-family:"Playfair Display", serif;
+  font-size:clamp(36px,8vw,90px);
+  color:#fff;
+}
+
+.name{
+  color:#ffffff;
+   text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+
+.typing-wrap{
+  margin-top:10px;
+  font-size:16px;
+  min-height:40px;
+}
+
+.cursor{
+  display:inline-block;
+  width:10px;
+  height:22px;
+  background:#fff;
+  margin-left:6px;
+  animation:blink .7s infinite;
+}
+
+@keyframes blink{
+  0%,50%{opacity:1;}
+  51%,100%{opacity:0;}
+}
+
+.btn{
+  margin-top:25px;
+  display:inline-block;
+  padding:14px 35px;
+  background:#e9e9e9;
+  color:#111;
+  text-decoration:none;
+  font-weight:700;
+  border-radius:4px;
+}
+
+.socials{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+}
+
+.socials a{
+  color:#fff;
+  font-size:18px;
+}
+
+@media(max-width:768px){
+  .menu{
+    width:50px;
+    height:50px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+ 
+<div class="menu" id="menu">
+  <i class="fas fa-bars"></i>
+</div>
+ 
+<div class="dots">
+  <span></span><span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span><span></span>
+</div>
+ 
+<div class="sidebar" id="sidebar">
+  <div class="close-btn" id="closeBtn">
+    <i class="fas fa-times"></i>
+  </div>
+<a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="#">Projects</a>
+  <a href="contact.html">Contact</a>
+</div>
+ 
+<section class="hero">
+
+  <div class="content">
+    <h1>Hi! I'm <span class="name">Jona</span></h1>
+
+    <div class="typing-wrap">
+      <span id="typing"></span><span class="cursor"></span>
+    </div>
+
+    <a href="about.html" class="btn">More About Me</a>
+
+    <div class="socials">
+      <a href="https://www.facebook.com/jnplc0023"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+
+</section>
+
+<script>
+ 
+const text = "A Full-Stack Developer building websites, business systems, and applications that turn ideas into working solutions.";
+const typing = document.getElementById("typing");
+
+let i = 0;
+function type(){
+  if(i < text.length){
+    typing.textContent += text.charAt(i);
+    i++;
+    setTimeout(type, 35);
+  }
+}
+window.onload = type;
+ 
+const menu = document.getElementById("menu");
+const sidebar = document.getElementById("sidebar");
+const closeBtn = document.getElementById("closeBtn");
+
+menu.onclick = () => sidebar.classList.add("active");
+closeBtn.onclick = () => sidebar.classList.remove("active");
+
+</script>
+
+</body>
+</html>

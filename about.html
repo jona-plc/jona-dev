@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>JPL | About Me</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:"Roboto Mono", monospace;
+  background:#f5f5f5;
+  color:#222;
+  overflow-x:hidden;
+}
+ 
+.menu{
+  position:fixed;
+  top:20px;
+  left:20px;
+  width:48px;
+  height:48px;
+  background:#fff;
+  border:1px solid #ddd;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:4000;
+  font-size:20px;
+}
+ 
+.sidebar{
+  position:fixed;
+  top:0;
+  left:-260px;
+  width:260px;
+  height:100%;
+  background:#fff;
+  border-right:1px solid #eee;
+  padding-top:80px;
+  transition:.4s ease;
+  z-index:3000;
+}
+
+.sidebar.active{
+  left:0;
+}
+
+.sidebar a{
+  display:block;
+  padding:16px 24px;
+  text-decoration:none;
+  color:#444;
+  font-size:14px;
+}
+
+.sidebar a:hover{
+  background:#f3f3f3;
+}
+
+.close-btn{
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:22px;
+  cursor:pointer;
+}
+ 
+section{
+  min-height:100vh;
+  padding:90px 24px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.container{
+  width:100%;
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:center;
+}
+ 
+.text-box{
+  width:100%;
+  max-width:540px;
+}
+
+.role{
+  font-size:12px;
+  letter-spacing:2px;
+  color:#777;
+  text-transform:uppercase;
+  margin-top:12px;
+}
+
+h1{
+  font-family:"Playfair Display", serif;
+  font-size:clamp(38px,5vw,64px);
+  line-height:1.05;
+}
+
+h1 span{
+  color:#888;
+}
+
+.line{
+  width:100%;
+  max-width:520px;
+  height:1px;
+  background:#d8d8d8;
+  margin:22px 0;
+}
+
+.desc{
+  font-size:15px;
+  line-height:1.9;
+  color:#444;
+  max-width:520px;
+  margin-top:18px;
+}
+.info{
+  display:grid;
+  gap:8px;
+}
+
+.info span{
+  display:grid;
+  grid-template-columns:150px 1fr;
+  gap:12px;
+  align-items:start;
+}
+
+.info strong{
+  color:#111;
+  font-weight:700;
+}
+
+.highlight{
+  margin-top:22px;
+  max-width:520px;
+  font-weight:500;
+  color:#111;
+  line-height:1.8;
+  border-left:3px solid #111;
+  padding-left:16px;
+}
+ 
+.image{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.avatar-wrap{
+  width:min(380px,85vw);
+  aspect-ratio:1/1;
+  position:relative;
+  animation:float 6s ease-in-out infinite;
+}
+
+.bg-circle{
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  border:2px solid #bbb;
+  opacity:.5;
+}
+
+.avatar{
+  position:relative;
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+ 
+.tech-section .container{
+  align-items:start;
+}
+
+.tech-group{
+  width:100%;
+  max-width:520px;
+}
+
+.skill{
+  margin-bottom:16px;
+}
+
+.skill span{
+  font-size:12px;
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:7px;
+  color:#333;
+}
+
+.bar{
+  height:8px;
+  background:#e5e5e5;
+  border-radius:99px;
+  overflow:hidden;
+}
+
+.bar div{
+  height:100%;
+  width:0%;
+  border-radius:99px;
+  background:linear-gradient(90deg,#ff6a00,#ee0979); /* ORANGE → PINK */
+  box-shadow:0 0 8px rgba(255,106,0,0.5), 0 0 12px rgba(238,9,121,0.4);
+  transition:width 1.4s ease, background 1.2s ease, box-shadow 1.2s ease;
+}
+
+.subtext{
+  font-size:8px;         
+  color:#888;            
+  margin-top:6px;        
+  letter-spacing:0.5px;  
+} 
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
+}
+
+.fade{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+
+.fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
+ 
+@media(max-width:900px){
+  section{
+    padding:90px 22px;
+  }
+
+  .container{
+    grid-template-columns:1fr;
+    gap:42px;
+    text-align:center;
+  }
+
+  .text-box{
+    margin:0 auto;
+  }
+
+  .desc,
+  .highlight,
+  .line{
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .desc{
+    text-align:left;
+  }
+
+  .image{
+    order:-1;
+  }
+
+  .info span{
+    grid-template-columns:1fr;
+    gap:2px;
+  }
+
+  .highlight{
+    text-align:left;
+  }
+
+  .tech-group{
+    margin:0 auto;
+  }
+}
+
+@media(max-width:480px){
+  .menu{
+    width:44px;
+    height:44px;
+    top:16px;
+    left:16px;
+  }
+
+  section{
+    padding:85px 18px;
+  }
+
+  h1{
+    font-size:40px;
+  }
+
+  .desc{
+    font-size:14px;
+  }
+}
+.about-contact {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #666;
+}
+
+.about-contact i {
+  margin-right: 5px;
+  vertical-align: middle;
+  font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="menu" id="menu">☰</div>
+
+<div class="sidebar" id="sidebar">
+  <div class="close-btn" id="closeBtn">×</div>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="#">Projects</a>
+  <a href="contact.html">Contact</a>
+  
+</div> 
+ 
+<section>
+  <div class="container fade">
+
+    <div class="text-box">
+
+      <h1>
+        About <span>Me</span>
+      </h1>
+
+      <div class="role">
+        Full-Stack Developer
+      </div>
+
+
+      <p class="subtext">
+        Bachelor of Science in Information Technology
+        <br>
+
+        <span class="about-contact">
+
+          <i class='bx bx-phone'></i>
+          +63 608422899
+
+          &nbsp;&nbsp;
+
+          <i class='bx bx-envelope'></i>
+          jonapalacio06@gmail.com
+
+        </span>
+
+      </p>
+
+
+      <div class="line"></div>
+
+ 
+      <p class="desc">
+        Focused on developing modern websites,
+        management systems, and digital solutions
+        designed to improve workflows, enhance user
+        experience, and support business growth.
+      </p>
+
+
+      <div class="highlight">
+        Available for custom websites,
+        management systems, web applications,
+        and business solutions.
+      </div>
+
+    </div>
+
+
+
+    <div class="image">
+
+      <div class="avatar-wrap">
+
+        <div class="bg-circle"></div>
+
+        <div class="avatar">
+          <img
+            src="assets/profile.png"
+            alt="Jona Palacio"
+          >
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+</section>
+ 
+<section class="tech-section">
+  <div class="container fade">
+
+    <div class="text-box">
+      <h1>Tech <span>Stack</span></h1>
+      <div class="role">Development Tools</div>
+
+      <p class="desc">
+        Tools I use to build scalable systems, responsive interfaces, and functional web applications.
+      </p>
+    </div>
+
+    <div class="tech-group">
+
+      <div class="skill">
+        <span>HTML <b>95%</b></span>
+        <div class="bar"><div data-width="95"></div></div>
+      </div>
+
+      <div class="skill">
+        <span>CSS <b>90%</b></span>
+        <div class="bar"><div data-width="90"></div></div>
+      </div>
+
+      <div class="skill">
+        <span>JavaScript <b>85%</b></span>
+        <div class="bar"><div data-width="85"></div></div>
+      </div>
+
+      <div class="skill">
+        <span>PHP <b>70%</b></span>
+        <div class="bar"><div data-width="70"></div></div>
+      </div>
+
+      <div class="skill">
+        <span>Node.js <b>90%</b></span>
+        <div class="bar"><div data-width="90"></div></div>
+      </div>
+
+      <div class="skill">
+        <span>MySQL <b>85%</b></span>
+        <div class="bar"><div data-width="85"></div></div>
+      </div>
+
+      <div class="skill">
+        <span>React.js <b>50%</b></span>
+        <div class="bar"><div data-width="50"></div></div>
+      </div>
+
+      <div class="skill">
+        <span>Vue.js <b>50%</b></span>
+        <div class="bar"><div data-width="50"></div></div>
+      </div>
+
+      <div class="skill">
+        <span>Next.js <b>50%</b></span>
+        <div class="bar"><div data-width="50"></div></div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+const menu = document.getElementById("menu");
+const sidebar = document.getElementById("sidebar");
+const closeBtn = document.getElementById("closeBtn");
+
+menu.onclick = () => {
+  sidebar.classList.add("active");
+};
+
+closeBtn.onclick = () => {
+  sidebar.classList.remove("active");
+};
+
+document.querySelectorAll(".sidebar a").forEach(link => {
+  link.onclick = () => {
+    sidebar.classList.remove("active");
+  };
+});
+
+const fade = document.querySelectorAll(".fade");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+
+      const bars = entry.target.querySelectorAll(".bar div");
+      bars.forEach(bar => {
+        bar.style.width = bar.dataset.width + "%";
+      });
+    }
+  });
+},{threshold:0.3});
+
+fade.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
